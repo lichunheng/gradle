@@ -26,7 +26,7 @@ gretty {
 	contextPath = '/'
 	servletContainer = 'tomcat8'
 
-	debugSuspend = false
+	debugSuspend = true
 	managedClassReload = true
 	recompileOnSourceChange = false
 }
