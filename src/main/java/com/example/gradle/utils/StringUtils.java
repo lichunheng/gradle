@@ -31,7 +31,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
             return join(array, separator, asString, 0, arraylength - 1);
         }
 
-        throw new IllegalArgumentException("StringUtils.join():The param [Object array] must be a array!");
+        throw new IllegalArgumentException("StringUtils.join(): The param [Object array] must be a array!");
     }
 
 
@@ -41,6 +41,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         }
 
         if (array.getClass().isArray()) {
+
             StringBuilder buffer = new StringBuilder();
 
             separator = (separator == null) ? "" : separator;
@@ -52,10 +53,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
                     dataEle = (asString) ? "" + dataEle + "" : dataEle.toString();
                     buffer.append(dataEle);
                 }
-
                 if (i < endIndex)
                     buffer.append(separator);
-
             }
 
             return buffer.toString();
@@ -178,18 +177,18 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         return Arrays.stream(strs).map(a -> Long.parseLong(a)).collect(Collectors.toList());
     }
 
-    public static String getNoBySub(String nullReturnValue, String no, int length, String chars,String prex) {
+    public static String getNoBySub(String nullReturnValue, String no, int length, String chars, String prex) {
         if (StringUtils.isEmptyString(no)) {
             return nullReturnValue;
         }
-        no = no.substring(no.length()-length);
+        no = no.substring(no.length() - length);
         int nos = Integer.parseInt(no) + 1;
         String strs = "";
         for (int i = 0; i < length; i++) {
             strs += chars;
         }
         String returnValue = strs + nos;
-        return prex+returnValue.substring(returnValue.length() - length);
+        return prex + returnValue.substring(returnValue.length() - length);
     }
 
     public static String getNoByDecimalFormat(String nullReturnValue, String no, int length, String chars, String prex) {

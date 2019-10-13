@@ -1,39 +1,50 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.akhikhl.gretty:gretty:1.2.4'
+	}
+}
+// 应用插件
 plugins {
 	id 'org.springframework.boot' version '2.1.9.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
-
-//应用的插件
 apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
+gretty {
+	port = 8080
+	contextPath = '/'
+	servletContainer = 'tomcat8'
+
+	debugSuspend = false
+	managedClassReload = true
+	recompileOnSourceChange = false
+}
+tasks.withType(JavaCompile) {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+////////////////////////////////////////////////////////////////////////////////
+//                                   Maven 依赖                               //
+////////////////////////////////////////////////////////////////////////////////
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.58'
-	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
-	compile group: 'com.google.guava', name: 'guava', version: '28.1-jre'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
 }
-
-jar {
-	enabled = true
-}
-
-tasks.withType(JavaCompile){
-	options.encoding = 'UTF-8'
-}
-[compileJava,javadoc,compileTestJava]*.options*.encoding = 'UTF-8'
