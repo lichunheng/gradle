@@ -6,6 +6,7 @@ buildscript {
 		classpath 'org.akhikhl.gretty:gretty:1.2.4'
 	}
 }
+
 // 应用插件
 plugins {
 	id 'org.springframework.boot' version '2.1.9.RELEASE'
@@ -14,6 +15,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'war'
+apply plugin: 'idea'
 apply plugin: 'org.akhikhl.gretty'
 
 group = 'com.example'
@@ -44,6 +46,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
