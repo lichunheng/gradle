@@ -1,0 +1,35 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'idea'
+	id 'maven'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.9.RELEASE'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.58'
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+	compile group: 'com.google.guava', name: 'guava', version: '28.1-jre'
+
+}
+
+jar {
+	enabled = true
+}
+
+tasks.withType(JavaCompile){
+	options.encoding = 'UTF-8'
+}
+[compileJava,javadoc,compileTestJava]*.options*.encoding = 'UTF-8'
